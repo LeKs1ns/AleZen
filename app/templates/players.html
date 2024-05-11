@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+
+<body> 
+
+{%block content%}
+
+<div class="row row-cols-1 row-cols-md-5 g-4">
+  {%for player in players%}
+  <div class="col">
+    <div class="card">
+      <img src="{{ url_for('static', filename='uploads/'+player[5]) }}" class="card-img-top" alt="..." >
+      <div class="card-body">
+        <h5 class="card-title">{{player[0]}}  id : {{player[2]}} </h5>
+        <p class="card-text">  Balance : {{player[3]}} </p>
+        <a href = "/deleteplayer?delid={{player[2]}}" class = "btn btn-danger"> Delete </a>
+      </div>
+    </div>
+  </div>
+    {%endfor%}
+</div>
+
+<br><br><br><br>
+
+<a href = "/" class="btn btn-secondary"> Back to homepage</a>
+
+{%endblock%}
+
+</body>
+</html>
+
+
+
+

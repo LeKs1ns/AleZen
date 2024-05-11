@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Pricing example{% endblock %}</title>
+    <!-- Подключение CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Пользовательские стили -->
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://fbcd.co/images/products/85d50572cd5393e1811f2123e24297c2.jpg');
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .background-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .profile-info p {
+            margin-bottom: 10px;
+        }
+
+        .btn-custom {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .link-body-emphasis {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link-body-emphasis:hover {
+            color: #0056b3;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        /* Стили для выпадающего меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 8px 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<header class="d-flex justify-content-between align-items-center py-3 px-4 mb-4 bg-white">
+    <div class="header-logo">
+        <a href="/" class="link-body-emphasis text-decoration-none">
+            <img src="https://media1.thehungryjpeg.com/thumbs2/ori_3684201_u864c1kiwx7j615nkn89xtyk67rn5qmer98svw6i_al-monogram-logo-design.jpg" alt="AleZen Logo" style="width: 40px; height: auto; margin-right: 10px;">
+            <span class="header-title">AleZen</span>
+        </a>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-custom text-decoration-none">Меню</button>
+        <div class="dropdown-content">
+            {% if 'user' in session %}
+                <a href="/profile">Профиль</a>
+            {% else %}
+                <a href="/login">Войти</a>
+                <a href="/registr">Регистрация</a>
+            {% endif %}
+            <a href="/">Выбрать игру</a>
+            {% if 'user' in session %}
+                <a href="/logout">Выйти</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+
+<main>
+    <div class="container">
+        <h2>Профиль пользователя</h2>
+        <div class="profile-info">
+            <p><span class="label">Имя:</span> {{ user[0] }}</p>
+            <p><span class="label">ID:</span> {{ user[2] }}</p>
+            <p><span class="label">Баланс:</span> {{ user[3] }} $</p>
+        </div>
+        <a href="/logout" class="btn btn-custom">Выйти</a>
+    </div>
+</main>
+
+<footer class="container py-4 text-center">
+    <div class="row">
+        <div class="col-12 col-md">
+            <img class="mb-2" src="https://media1.thehungryjpeg.com/thumbs2/ori_3684201_u864c1kiwx7j615nkn89xtyk67rn5qmer98svw6i_al-monogram-logo-design.jpg" alt="" width="24" height="19">
+            <small class="d-block mb-3 text-body-secondary">© 2024</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>В разработке</h5>
+            <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Ссылка 1</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Ссылка 2</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Контакты</h5>
+            <ul class="list-unstyled text-small">
+                <li class="mb-1">Вк: <a href="https://vk.com/a1ezen" class="link-body-emphasis">vk.com/a1ezen</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!-- Подключение скриптов Bootstrap (необходимо для работы некоторых компонентов) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JW/V5qFOW2u7qSaj6ao4J9koMUcP5m7lJPIjy5tFQhWA+ASuTSpOTx1qj4WKPp5l" crossorigin="anonymous"></script>
+</body>
+</html>
